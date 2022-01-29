@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmoTracker's Junk Check Removal", "EmoTracker's Junk Check Removal\EmoTracker's Junk Check Removal.csproj", "{1073A1EE-A41F-42BF-B74A-E59A6DE51374}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1073A1EE-A41F-42BF-B74A-E59A6DE51374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1073A1EE-A41F-42BF-B74A-E59A6DE51374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1073A1EE-A41F-42BF-B74A-E59A6DE51374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1073A1EE-A41F-42BF-B74A-E59A6DE51374}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1162B913-9A9C-4549-8A1A-51152636FEC4}
+	EndGlobalSection
+EndGlobal
