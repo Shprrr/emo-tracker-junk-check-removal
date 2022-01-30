@@ -3,7 +3,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmoTrackerJunkCheckRemoval" mc:Ignorable="d" Title="EmoTracker's Junk Check Removal"
         Height="450" Width="800" Background="#FF212121" Foreground="#FFEDEDED">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#FFEDEDED" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="80" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="4" />
+        </Style>
+    </Window.Resources>
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Spoiler Log:" />
+        <TextBox x:Name="txtSpoilerLogFilename" Grid.Column="1" Text="" Width="500" />
+        <Button Grid.Column="2" Content="Browse" Click="Browse_Click" />
+        <Button Grid.Column="2" Grid.Row="1" Content="Save Tracker" Click="SaveTracker_Click" />
     </Grid>
 </Window>

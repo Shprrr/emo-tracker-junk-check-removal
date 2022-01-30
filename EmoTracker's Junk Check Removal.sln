@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmoTracker's Junk Check Removal", "EmoTracker's Junk Check Removal\EmoTracker's Junk Check Removal.csproj", "{1073A1EE-A41F-42BF-B74A-E59A6DE51374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmoTracker's Junk Check Removal", "EmoTracker's Junk Check Removal\EmoTracker's Junk Check Removal.csproj", "{1073A1EE-A41F-42BF-B74A-E59A6DE51374}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A5D433A-9E12-43FD-9FBB-D15B69A88CDA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
