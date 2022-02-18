@@ -9,6 +9,8 @@ namespace EmoTrackerJunkCheckRemoval
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly SpoilerLogFactory logFactory = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -23,12 +25,15 @@ namespace EmoTrackerJunkCheckRemoval
 
         private void SaveTracker_Click(object sender, RoutedEventArgs e)
         {
-            var spoilerLog = SpoilerLogFactory.Open(txtSpoilerLogFilename.Text);
+            var spoilerLog = logFactory.Open(txtSpoilerLogFilename.Text);
             if (spoilerLog == null)
             {
                 MessageBox.Show("Spoiler Log is invalid.");
                 return;
             }
+            SaveFileDialog dialog = new() { DefaultExt = "json", Filter = "EmoTracker Save File (*.json)|*.json" };
+            if (!dialog.ShowDialog().GetValueOrDefault()) return;
+            spoilerLog.SaveTracker(dialog.FileName);
         }
     }
 }
