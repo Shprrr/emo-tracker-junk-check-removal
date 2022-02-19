@@ -11,8 +11,81 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
 
         public ISpoilerLog BuildSpoilerLog(string content)
         {
-            return new SpoilerLogZeldaMinishCap();
+            var spoilerLog = new SpoilerLogZeldaMinishCap();
+            var contentLines = content.Split(Environment.NewLine);
+
+            // Read content of spoiler log file.
+            bool inLocationContentsSection = false;
+            for (var i = 0; i < contentLines.Length; i++)
+            {
+                var line = contentLines[i];
+                if (line == "Location Contents:")
+                {
+                    inLocationContentsSection = true;
+                    continue;
+                }
+
+                if (inLocationContentsSection)
+                {
+                    if (string.IsNullOrEmpty(line)) // End of section
+                        break;
+
+                    var parts = line.Split(": ");
+                    if (parts[0].StartsWith("Area")) // Music section
+                    {
+                        i += 3;
+                        continue;
+                    }
+
+                    if (string.IsNullOrEmpty(contentLines[i + 1])) // Item with subvalue ?
+                        spoilerLog.pairLocationItems.Add(new PairLocationItem(parts[0], parts[1]));
+                    else
+                    {
+                        var subvalueParts = contentLines[i + 1].Split(": ");
+                        spoilerLog.pairLocationItems.Add(new PairLocationItem(parts[0], parts[1], subvalueParts[1]));
+                        i++;
+                    }
+                    i++;
+                    continue;
+                }
+            }
+
+            // Compile informations.
+            Dictionary<string, SpoilerLog.Item> items = new();
+            foreach (var pair in spoilerLog.pairLocationItems)
+            {
+                var id = pair.Item;
+                if (pair.Subvalue != null) id += $"_{pair.Subvalue}";
+
+                if (items.TryGetValue(id, out var itemKey))
+                    spoilerLog.ItemCount[itemKey]++;
+                else
+                {
+                    items.Add(id, new SpoilerLog.Item(id, pair.Item));
+                    spoilerLog.ItemCount.Add(items[id], 1);
+                }
+            }
+
+            return spoilerLog;
         }
+
+        private readonly List<PairLocationItem> pairLocationItems = new();
+
+        private class PairLocationItem
+        {
+            public PairLocationItem(string location, string item, string subvalue = null)
+            {
+                Location = location ?? throw new ArgumentNullException(nameof(location));
+                Item = item ?? throw new ArgumentNullException(nameof(item));
+                Subvalue = subvalue;
+            }
+
+            public string Location { get; set; }
+            public string Item { get; set; }
+            public string Subvalue { get; set; }
+        }
+
+        public Dictionary<SpoilerLog.Item, int> ItemCount { get; } = new();
 
         public void SaveTracker(string filename)
         {
