@@ -4,7 +4,7 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
 {
     public class SpoilerLogFactory
     {
-        public ISpoilerLog[] spoilersTemplate = new[] { new SpoilerLogZeldaMinishCap() };
+        private readonly ISpoilerLog[] spoilersTemplate = new[] { new SpoilerLogZeldaMinishCap() };
 
         public ISpoilerLog Open(string spoilerLogFilename)
         {

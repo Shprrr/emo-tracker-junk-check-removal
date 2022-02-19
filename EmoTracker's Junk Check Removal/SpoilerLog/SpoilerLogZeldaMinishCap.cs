@@ -16,12 +16,27 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
 
         public void SaveTracker(string filename)
         {
-            Tracker tracker = new();
+            var settings = JsonConvert.DeserializeObject<EmoTrackerSettings>(File.ReadAllText(Path.Combine(App.GetEmoTrackerFolder(), "application_settings.json")));
+            Tracker tracker = new()
+            {
+                ignore_all_logic = settings.tracking_ignore_all_logic,
+                display_all_locations = settings.tracking_display_all_locations,
+                always_allow_chest_manipulation = settings.tracking_always_allow_clearing_locations
+            };
             tracker.item_database.Add(new ProgressiveItem("95:progressive:Fusions", 1));
             tracker.location_database.locations.Add(new("8:Crenel%20Climbing%20Wall%20Chest", false, new Section("0:Wall%20Chest", 0)));
             tracker.location_database.locations.Add(new("34:Crenel%20Climbing%20Wall%20Cave", false, new Section("0:Crenel%20Climbing%20Wall%20Cave", 0)));
             tracker.location_database.locations.Add(new("126:Lady%20Next%20to%20Cafe", false, new Section("0:Lady%20Next%20to%20Cafe", 0)));
             File.WriteAllText(filename, JsonConvert.SerializeObject(tracker, new JsonSerializerSettings { DateFormatString = "yyyy'-'MM'-'dd' 'HH':'mm':'ss" }));
+        }
+
+        private class EmoTrackerSettings
+        {
+#pragma warning disable 0649 // Deserialization
+            public bool tracking_ignore_all_logic;
+            public bool tracking_always_allow_clearing_locations;
+            public bool tracking_display_all_locations;
+#pragma warning restore 0649
         }
 
         private class Tracker
@@ -30,6 +45,9 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             public string package_variant_uid = "standard";
             public string package_version = "1.8.0.8";
             public DateTime creation_time = DateTime.Now;
+            public bool ignore_all_logic;
+            public bool display_all_locations;
+            public bool always_allow_chest_manipulation;
             public List<Item> item_database = new();
             public Locations location_database = new();
         }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using EmoTrackerJunkCheckRemoval.SpoilerLog;
 using Microsoft.Win32;
 
@@ -31,7 +32,12 @@ namespace EmoTrackerJunkCheckRemoval
                 MessageBox.Show("Spoiler Log is invalid.");
                 return;
             }
-            SaveFileDialog dialog = new() { DefaultExt = "json", Filter = "EmoTracker Save File (*.json)|*.json" };
+            SaveFileDialog dialog = new()
+            {
+                InitialDirectory = Path.Combine(App.GetEmoTrackerFolder(), "saves"),
+                DefaultExt = "json",
+                Filter = "EmoTracker Save File (*.json)|*.json"
+            };
             if (!dialog.ShowDialog().GetValueOrDefault()) return;
             spoilerLog.SaveTracker(dialog.FileName);
         }
