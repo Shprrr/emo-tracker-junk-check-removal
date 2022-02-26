@@ -58,11 +58,11 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
                 if (pair.Subvalue != null) id += $"_{pair.Subvalue}";
 
                 if (items.TryGetValue(id, out var itemKey))
-                    spoilerLog.ItemCount[itemKey]++;
+                    spoilerLog.ItemsCount[itemKey]++;
                 else
                 {
                     items.Add(id, new SpoilerLog.Item(id, pair.Item));
-                    spoilerLog.ItemCount.Add(items[id], 1);
+                    spoilerLog.ItemsCount.Add(items[id], 1);
                 }
             }
 
@@ -85,7 +85,7 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             public string Subvalue { get; set; }
         }
 
-        public Dictionary<SpoilerLog.Item, int> ItemCount { get; } = new();
+        public Dictionary<SpoilerLog.Item, int> ItemsCount { get; } = new();
 
         public void SaveTracker(string filename)
         {
