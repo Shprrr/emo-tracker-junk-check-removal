@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using EmoTrackerJunkCheckRemoval.SpoilerLog;
 
 namespace EmoTrackerJunkCheckRemoval.ViewModels
@@ -10,9 +11,9 @@ namespace EmoTrackerJunkCheckRemoval.ViewModels
         public static SpoilerLogViewModel Mock = new();
         static SpoilerLogViewModel()
         {
-            Mock.ItemsCount.Add(new(new(new("i1", "Item 1"), 2)));
-            Mock.ItemsCount.Add(new(new(new("i2", "Item 2"), 10)));
-            Mock.ItemsCount.Add(new(new(new("i3", "Item 3"), 3)));
+            Mock.ItemsCount.Add(new(new(new("i1", "Item 1", 1), 2)));
+            Mock.ItemsCount.Add(new(new(new("i2", "Item 2", 2), 10)));
+            Mock.ItemsCount.Add(new(new(new("i3", "Item 3", 3), 3)));
         }
 
         private ObservableCollection<ItemCount> itemsCount = new();
@@ -29,7 +30,8 @@ namespace EmoTrackerJunkCheckRemoval.ViewModels
         {
             ItemsCount.Clear();
             if (spoilerLog != null)
-                foreach (var itemCount in spoilerLog.ItemsCount)
+                foreach (var itemCount in spoilerLog.ItemsCount
+                    .OrderBy(i => (i.Key.Category?.Order).GetValueOrDefault(int.MaxValue)).ThenBy(i => i.Key.Order).ThenBy(i => i.Key.Id))
                 {
                     ItemsCount.Add(new ItemCount(itemCount));
                 }

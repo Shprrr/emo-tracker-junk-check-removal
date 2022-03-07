@@ -7,6 +7,150 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
 {
     public class SpoilerLogZeldaMinishCap : ISpoilerLog
     {
+        private static readonly Category MajorCategory = new("Major", 1);
+        private static readonly Category QuestCategory = new("Quest", 2);
+        private static readonly Category KinstoneCategory = new("Kinstone", 3);
+        private static readonly Category UpgradeCategory = new("Upgrade", 4);
+        private static readonly Category ScrollsCategory = new("Scrolls", 5);
+        private static readonly Category GoalCategory = new("Goal", 6);
+        //private static readonly Category DungeonCategory = new("Dungeon", 10);
+        private static readonly Category DeepwoodShrineCategory = new("Deepwood Shrine", 11);
+        private static readonly Category CaveOfFlamesCategory = new("Cave of Flames", 12);
+        private static readonly Category FortressOfWindsCategory = new("Fortress of Winds", 13);
+        private static readonly Category TempleOfDropletsCategory = new("Temple of Droplets", 14);
+        private static readonly Category RoyalCryptCategory = new("Royal Crypt", 15);
+        private static readonly Category PalaceOfWindsCategory = new("Palace of Winds", 16);
+        private static readonly Category DarkHyruleCastleCategory = new("Dark Hyrule Castle", 17);
+        private static readonly Category MoneyCategory = new("Money", 20);
+        private static readonly Category RecoveryCategory = new("Recovery", 21);
+        private static readonly Dictionary<string, SpoilerLog.Item> ItemDatabase = new()
+        {
+            { "SmithSword", new("Sword", "Sword", 1, MajorCategory) },
+            //{ "GreenSword", new("GreenSword", "Sword", 0, null) }, // Progressive item
+            //{ "RedSword", new("RedSword", "Sword", 0, null) }, // Progressive item
+            //{ "BlueSword", new("BlueSword", "Sword", 0, null) }, // Progressive item
+            //{ "FourSword", new("FourSword", "Sword", 0, null) }, // Progressive item
+            //{ "Bombs", new("Bombs", "Bomb", 0, null) }, // Progressive item
+            { "RemoteBombs", new("RemoteBombs", "Remote Bomb", 3, UpgradeCategory) },
+            { "Bow", new("Bow", "Bow", 4, MajorCategory) },
+            //{ "LightArrow", new("LightArrow", "Light Arrow", 0, null) }, // Progressive item
+            { "Boomerang", new("Boomerang", "Boomerang", 5, MajorCategory) },
+            //{ "MagicBoomerang", new("MagicBoomerang", "Magical Boomerang", 0, null) }, // Progressive item
+            { "Shield", new("Shield", "Shield", 6, MajorCategory) },
+            //{ "MirrorShield", new("MirrorShield", "Mirror Shield", 0, null) }, // Progressive item
+            { "LanternOff", new("Lantern", "Lantern", 7, MajorCategory) },
+            { "GustJar", new("GustJar", "Gust Jar", 8, MajorCategory) },
+            { "PacciCane", new("PacciCane", "Cane of Pacci", 9, MajorCategory) },
+            { "MoleMitts", new("MoleMitts", "Mole Mitts", 10, MajorCategory) },
+            { "RocsCape", new("RocsCape", "Roc's Cape", 11, MajorCategory) },
+            { "PegasusBoots", new("PegasusBoots", "Pegasus Boots", 12, MajorCategory) },
+            //{ "FireRod", new("FireRod", "Fire Rod", 13, MajorCategory) }, // Unused
+            { "Ocarina", new("Ocarina", "Ocarina of Wind", 14, MajorCategory) },
+            //{ "GreenOrb", new("GreenOrb", "Farore's Pearl", 15, null) }, // Unused
+            //{ "BlueOrb", new("BlueOrb", "Nayru's Pearl", 16, null) }, // Unused
+            //{ "RedOrb", new("RedOrb", "Din's Pearl", 17, null) }, // Unused
+            { "Trap", new("Trap", "Trap", 18, null) },
+            { "Bottle1", new("Bottle", "Bottle", 19, MajorCategory) },
+            { "Bottle2", new("Bottle", "Bottle", 20, MajorCategory) },
+            { "Bottle3", new("Bottle", "Bottle", 21, MajorCategory) },
+            { "Bottle4", new("Bottle", "Bottle", 22, MajorCategory) },
+            //{ "SmithSwordQuest", new("SmithSwordQuest", "Smith's Sword", 23, QuestCategory) }, // Removed from rando
+            //{ "BrokenPicoriBlade", new("BrokenPicoriBlade", "Broken Picori Blade", 24, QuestCategory) }, // Removed from rando
+            { "DogFoodBottle", new("DogFoodBottle", "Dog Food", 25, QuestCategory) },
+            { "LonLonKey", new("LonLonKey", "Lon Lon Ranch Spare Key", 26, QuestCategory) },
+            { "WakeUpMushroom", new("WakeUpMushroom", "Wake-Up Mushroom", 27, QuestCategory) },
+            { "HyruleanBestiary", new("HyruleanBestiary", "A Hyrulean Bestiary", 28, QuestCategory) },
+            { "PicoriLegend", new("PicoriLegend", "Legend of the Picori", 29, QuestCategory) },
+            { "MaskHistory", new("MaskHistory", "A History of Masks", 30, QuestCategory) },
+            { "GraveyardKey", new("GraveyardKey", "Graveyard Key", 31, QuestCategory) },
+            { "TingleTrophy", new("TingleTrophy", "Tingle Trophy", 32, QuestCategory) },
+            { "CarlovMedal", new("CarlovMedal", "Carlov Medal", 33, QuestCategory) },
+            //{ "ShellsX", new("ShellsX", "Shells", 34, MoneyCategory) }, // Removed from rando
+            //{ "Shells30", new("Shells30", "Shells x30", 35, MoneyCategory) }, // Removed from rando
+            { "EarthElement", new("EarthElement", "Earth Element", 36, QuestCategory) },
+            { "FireElement", new("FireElement", "Fire Element", 37, QuestCategory) },
+            { "WaterElement", new("WaterElement", "Water Element", 38, QuestCategory) },
+            { "WindElement", new("WindElement", "Wind Element", 39, QuestCategory) },
+            { "GripRing", new("GripRing", "Grip Ring", 40, MajorCategory) },
+            { "PowerBracelets", new("PowerBracelets", "Power Bracelets", 41, MajorCategory) },
+            { "Flippers", new("Flippers", "Flippers", 42, MajorCategory) },
+            //{ "HyruleMap", new("HyruleMap", "Map of Hyrule", 43, QuestCategory) }, // Removed from rando
+            { "SpinAttack", new("SpinAttack", "Spin Attack", 44, ScrollsCategory) },
+            { "RollAttack", new("RollAttack", "Roll Attack", 45, ScrollsCategory) },
+            { "DashAttack", new("DashAttack", "Dash Attack", 46, ScrollsCategory) },
+            { "RockBreaker", new("RockBreaker", "Rock Breaker", 47, ScrollsCategory) },
+            { "SwordBeam", new("SwordBeam", "Sword Beam", 48, ScrollsCategory) },
+            { "GreatSpin", new("GreatSpin", "Great Spin Attack", 49, ScrollsCategory) },
+            { "DownThrust", new("DownThrust", "Downthrust", 50, ScrollsCategory) },
+            { "PerilBeam", new("PerilBeam", "Peril Beam", 51, ScrollsCategory) },
+            { "DungeonMap_24", new("DungeonMap_24", "Dungeon Map (DwS)", 1, DeepwoodShrineCategory) },
+            { "Compass_24", new("Compass_24", "Compass (DwS)", 2, DeepwoodShrineCategory) },
+            { "BigKey_24", new("BigKey_24", "Big Key (DwS)", 3, DeepwoodShrineCategory) },
+            { "SmallKey_24", new("SmallKey_24", "Small Key (DwS)", 4, DeepwoodShrineCategory) },
+            { "DungeonMap_25", new("DungeonMap_25", "Dungeon Map (CoF)", 1, CaveOfFlamesCategory) },
+            { "Compass_25", new("Compass_25", "Compass (CoF)", 2, CaveOfFlamesCategory) },
+            { "BigKey_25", new("BigKey_25", "Big Key (CoF)", 3, CaveOfFlamesCategory) },
+            { "SmallKey_25", new("SmallKey_25", "Small Key (CoF)", 4, CaveOfFlamesCategory) },
+            { "DungeonMap_26", new("DungeonMap_26", "Dungeon Map (FoW)", 1, FortressOfWindsCategory) },
+            { "Compass_26", new("Compass_26", "Compass (FoW)", 2, FortressOfWindsCategory) },
+            { "BigKey_26", new("BigKey_26", "Big Key (FoW)", 3, FortressOfWindsCategory) },
+            { "SmallKey_26", new("SmallKey_26", "Small Key (FoW)", 4, FortressOfWindsCategory) },
+            { "DungeonMap_27", new("DungeonMap_27", "Dungeon Map (ToD)", 1, TempleOfDropletsCategory) },
+            { "Compass_27", new("Compass_27", "Compass (ToD)", 2, TempleOfDropletsCategory) },
+            { "BigKey_27", new("BigKey_27", "Big Key (ToD)", 3, TempleOfDropletsCategory) },
+            { "SmallKey_27", new("SmallKey_27", "Small Key (ToD)", 4, TempleOfDropletsCategory) },
+            { "DungeonMap_28", new("DungeonMap_28", "Dungeon Map (PoW)", 1, PalaceOfWindsCategory) },
+            { "Compass_28", new("Compass_28", "Compass (PoW)", 2, PalaceOfWindsCategory) },
+            { "BigKey_28", new("BigKey_28", "Big Key (PoW)", 3, PalaceOfWindsCategory) },
+            { "SmallKey_28", new("SmallKey_28", "Small Key (PoW)", 4, PalaceOfWindsCategory) },
+            { "DungeonMap_29", new("DungeonMap_29", "Dungeon Map (DHC)", 1, DarkHyruleCastleCategory) },
+            { "Compass_29", new("Compass_29", "Compass (DHC)", 2, DarkHyruleCastleCategory) },
+            { "BigKey_29", new("BigKey_29", "Big Key (DHC)", 3, DarkHyruleCastleCategory) },
+            { "SmallKey_29", new("SmallKey_29", "Small Key (DHC)", 4, DarkHyruleCastleCategory) },
+            { "DungeonMap_30", new("DungeonMap_30", "Dungeon Map (RC)", 1, RoyalCryptCategory) },
+            { "Compass_30", new("Compass_30", "Compass (RC)", 2, RoyalCryptCategory) },
+            { "BigKey_30", new("BigKey_30", "Big Key (RC)", 3, RoyalCryptCategory) },
+            { "SmallKey_30", new("SmallKey_30", "Small Key (RC)", 4, RoyalCryptCategory) },
+            { "Rupee1", new("Rupee1", "Rupee x1", 52, MoneyCategory) },
+            { "Rupee5", new("Rupee5", "Rupee x5", 53, MoneyCategory) },
+            { "Rupee20", new("Rupee20", "Rupee x20", 54, MoneyCategory) },
+            { "Rupee50", new("Rupee50", "Rupee x50", 55, MoneyCategory) },
+            { "Rupee100", new("Rupee100", "Rupee x100", 56, MoneyCategory) },
+            { "Rupee200", new("Rupee200", "Rupee x200", 57, MoneyCategory) },
+            { "JabberNut", new("JabberNut", "Jabber Nut", 58, UpgradeCategory) },
+            { "KinstoneX", new("KinstoneX", "Kinstone", 0, KinstoneCategory) },
+            { "KinstoneX_YellowTotemProng", new("KinstoneX_YellowTotemProng", "Gold Kinstone Mysterious Statue", 59, KinstoneCategory) },
+            { "KinstoneX_YellowCrown", new("KinstoneX_YellowCrown", "Gold Kinstone Source of the Flow", 60, KinstoneCategory) },
+            { "KinstoneX_YellowTornadoProng", new("KinstoneX_YellowTornadoProng", "Gold Kinstone Mysterious Clouds", 61, KinstoneCategory) },
+            //{ "KinstoneX_R", new("KinstoneX_Red", "Red Kinstone", 62, KinstoneCategory) },
+            //{ "KinstoneX_B", new("KinstoneX_Blue", "Blue Kinstone", 63, KinstoneCategory) },
+            //{ "KinstoneX_G", new("KinstoneX_Green", "Green Kinstone", 64, KinstoneCategory) },
+            { "Bombs5", new("Bombs5", "Bombs x5", 65, RecoveryCategory) },
+            { "Bombs10", new("Bombs10", "Bombs x10", 66, RecoveryCategory) },
+            { "Bombs30", new("Bombs30", "Bombs x30", 67, RecoveryCategory) },
+            { "Arrows5", new("Arrows5", "Arrows x5", 68, RecoveryCategory) },
+            { "Arrows10", new("Arrows10", "Arrows x10", 69, RecoveryCategory) },
+            { "Arrows30", new("Arrows30", "Arrows x30", 70, RecoveryCategory) },
+            { "SmallHeart", new("SmallHeart", "Recovery Heart", 71, RecoveryCategory) },
+            { "Fairy", new("Fairy", "Fairy", 72, RecoveryCategory) },
+            { "HeartContainer", new("HeartContainer", "Heart Container", 73, UpgradeCategory) },
+            { "PieceOfHeart", new("PieceOfHeart", "Piece of Heart", 74, UpgradeCategory) },
+            { "Wallet", new("Wallet", "Wallet", 75, UpgradeCategory) },
+            { "BombBag", new("BombBag", "Bomb Bag", 2, MajorCategory) },
+            { "LargeQuiver", new("LargeQuiver", "Quiver", 76, MajorCategory) },
+            { "KinstoneBag", new("KinstoneBag", "Figurine", 77, GoalCategory) },
+            { "Brioche", new("Brioche", "Brioche", 78, null) },
+            { "Croissant", new("Croissant", "Croissant", 79, null) },
+            { "PieSlice", new("PieSlice", "Slice of Pie", 80, null) },
+            { "CakeSlice", new("CakeSlice", "Slice of Cake", 81, null) },
+            { "ArrowButterfly_1", new("ArrowButterfly", "Joy Butterfly (Bow)", 82, UpgradeCategory) },
+            { "DigButterfly_1", new("DigButterfly", "Joy Butterfly (Mole Mitts)", 83, UpgradeCategory) },
+            { "SwimButterfly_1", new("SwimButterfly", "Joy Butterfly (Flippers)", 84, UpgradeCategory) },
+            { "FastSpin", new("FastSpin", "Faster Spin Attack", 85, ScrollsCategory) },
+            { "FastSplit", new("FastSplit", "Faster Split Gauge", 86, ScrollsCategory) },
+            { "LongSpin", new("LongSpin", "Longer Great Spin Attack", 87, ScrollsCategory) }
+        };
+
         public bool IsThisSpoilerLog(string content) => content.StartsWith("Spoiler for Minish Cap Randomizer");
 
         public ISpoilerLog BuildSpoilerLog(string content)
@@ -55,14 +199,21 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             foreach (var pair in spoilerLog.pairLocationItems)
             {
                 var id = pair.Item;
-                if (pair.Subvalue != null) id += $"_{pair.Subvalue}";
+                if (pair.Item != "KinstoneBag" && pair.Subvalue != null) id += $"_{pair.Subvalue}";
 
                 if (items.TryGetValue(id, out var itemKey))
                     spoilerLog.ItemsCount[itemKey]++;
                 else
                 {
-                    items.Add(id, new SpoilerLog.Item(id, pair.Item));
-                    spoilerLog.ItemsCount.Add(items[id], 1);
+                    if (!ItemDatabase.TryGetValue(id, out var item))
+                        item = new SpoilerLog.Item(id, pair.Item, int.MaxValue); // Unknown item
+                    items.Add(id, item);
+
+                    // Several id gives the same item
+                    if (spoilerLog.ItemsCount.ContainsKey(items[id]))
+                        spoilerLog.ItemsCount[items[id]]++;
+                    else
+                        spoilerLog.ItemsCount.Add(items[id], 1);
                 }
             }
 
