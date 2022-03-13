@@ -15,6 +15,9 @@
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="4" />
         </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#FFEDEDED" />
+        </Style>
         <Style TargetType="ItemsControl">
             <Setter Property="Margin" Value="4" />
         </Style>
@@ -51,7 +54,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <TextBlock Text="{Binding Item.Name}" />
+                            <CheckBox Content="{Binding Item.Name}" IsChecked="{Binding IsSelected}" />
                             <TextBlock Text="{Binding Count}" TextAlignment="Right" />
                         </DockPanel>
                     </DataTemplate>

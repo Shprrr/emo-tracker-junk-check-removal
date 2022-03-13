@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Windows;
 using EmoTrackerJunkCheckRemoval.SpoilerLog;
 using EmoTrackerJunkCheckRemoval.ViewModels;
@@ -45,7 +46,7 @@ namespace EmoTrackerJunkCheckRemoval
                 Filter = "EmoTracker Save File (*.json)|*.json"
             };
             if (!dialog.ShowDialog().GetValueOrDefault()) return;
-            openedSpoilerLog.SaveTracker(dialog.FileName);
+            openedSpoilerLog.SaveTracker(dialog.FileName, SpoilerLogViewModel.ItemsCount.Where(i => !i.IsSelected).Select(i => i.Item));
         }
     }
 }

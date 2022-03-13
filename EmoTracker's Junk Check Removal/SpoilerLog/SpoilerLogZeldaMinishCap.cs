@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace EmoTrackerJunkCheckRemoval.SpoilerLog
@@ -186,6 +187,13 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             { "FastSplit", new("FastSplit", "Faster Split Gauge", 86, ScrollsCategory) },
             { "LongSpin", new("LongSpin", "Longer Great Spin Attack", 87, ScrollsCategory) }
         };
+        private static readonly Dictionary<string, (string location, string section)> LocationDatabase = new()
+        {
+            { "SmithHouse", ("129:Smith%27s%20House", "0:Intro%20Items") },
+            { "IntroItem1", ("129:Smith%27s%20House", "0:Intro%20Items") },
+            { "IntroItem2", ("129:Smith%27s%20House", "0:Intro%20Items") }
+        };
+        private static readonly Dictionary<(string location, string section), int> LocationWithSectionDatabase = LocationDatabase.GroupBy(l => l.Value, (k, l) => (k, count: l.Count())).ToDictionary(l => l.k, l => l.count);
 
         public bool IsThisSpoilerLog(string content) => content.StartsWith("Spoiler for Minish Cap Randomizer");
 
@@ -193,6 +201,8 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
         {
             var spoilerLog = new SpoilerLogZeldaMinishCap();
             var contentLines = content.Split(Environment.NewLine);
+
+            List<PairLocationItem> pairLocationItems = new();
 
             // Read content of spoiler log file.
             bool inLocationContentsSection = false;
@@ -218,11 +228,11 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
                     }
 
                     if (string.IsNullOrEmpty(contentLines[i + 1])) // Item with subvalue ?
-                        spoilerLog.pairLocationItems.Add(new PairLocationItem(parts[0], parts[1]));
+                        pairLocationItems.Add(new PairLocationItem(parts[0], parts[1]));
                     else
                     {
                         var subvalueParts = contentLines[i + 1].Split(": ");
-                        spoilerLog.pairLocationItems.Add(new PairLocationItem(parts[0], parts[1], subvalueParts[1]));
+                        pairLocationItems.Add(new PairLocationItem(parts[0], parts[1], subvalueParts[1]));
                         i++;
                     }
                     i++;
@@ -232,13 +242,13 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
 
             // Compile informations.
             Dictionary<string, SpoilerLog.Item> items = new();
-            foreach (var pair in spoilerLog.pairLocationItems)
+            foreach (var pair in pairLocationItems)
             {
                 var id = pair.Item;
                 if (pair.Item != "KinstoneBag" && pair.Subvalue != null) id += $"_{pair.Subvalue}";
 
                 if (items.TryGetValue(id, out var itemKey))
-                    spoilerLog.ItemsCount[itemKey]++;
+                    spoilerLog.ItemsLocations[itemKey].Add(pair.Location);
                 else
                 {
                     if (!ItemDatabase.TryGetValue(id, out var item))
@@ -246,17 +256,15 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
                     items.Add(id, item);
 
                     // Several id gives the same item
-                    if (spoilerLog.ItemsCount.ContainsKey(items[id]))
-                        spoilerLog.ItemsCount[items[id]]++;
+                    if (spoilerLog.ItemsLocations.ContainsKey(items[id]))
+                        spoilerLog.ItemsLocations[items[id]].Add(pair.Location);
                     else
-                        spoilerLog.ItemsCount.Add(items[id], 1);
+                        spoilerLog.ItemsLocations.Add(items[id], new() { pair.Location });
                 }
             }
 
             return spoilerLog;
         }
-
-        private readonly List<PairLocationItem> pairLocationItems = new();
 
         private class PairLocationItem
         {
@@ -272,9 +280,9 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             public string Subvalue { get; set; }
         }
 
-        public Dictionary<SpoilerLog.Item, int> ItemsCount { get; } = new();
+        public Dictionary<SpoilerLog.Item, List<string>> ItemsLocations { get; } = new();
 
-        public void SaveTracker(string filename)
+        public void SaveTracker(string filename, IEnumerable<SpoilerLog.Item> junkItems)
         {
             var settings = JsonConvert.DeserializeObject<EmoTrackerSettings>(File.ReadAllText(Path.Combine(App.GetEmoTrackerFolder(), "application_settings.json")));
             Tracker tracker = new()
@@ -283,10 +291,24 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
                 display_all_locations = settings.tracking_display_all_locations,
                 always_allow_chest_manipulation = settings.tracking_always_allow_clearing_locations
             };
+            //TODO: Read settings from spoiler.
             tracker.item_database.Add(new ProgressiveItem("95:progressive:Fusions", 1));
-            tracker.location_database.locations.Add(new("8:Crenel%20Climbing%20Wall%20Chest", false, new Section("0:Wall%20Chest", 0)));
-            tracker.location_database.locations.Add(new("34:Crenel%20Climbing%20Wall%20Cave", false, new Section("0:Crenel%20Climbing%20Wall%20Cave", 0)));
-            tracker.location_database.locations.Add(new("126:Lady%20Next%20to%20Cafe", false, new Section("0:Lady%20Next%20to%20Cafe", 0)));
+
+            Dictionary<(string location, string section), int> junkLocations = new();
+            foreach (var junkItem in junkItems)
+            {
+                foreach (var location in ItemsLocations[junkItem])
+                {
+                    if (!LocationDatabase.TryGetValue(location, out var locationWithSection)) continue; // Unknown location
+
+                    if (junkLocations.ContainsKey(locationWithSection))
+                        junkLocations[locationWithSection]--;
+                    else
+                        junkLocations.Add(locationWithSection, LocationWithSectionDatabase[locationWithSection] - 1);
+                }
+            }
+            tracker.location_database.locations = junkLocations.Select(jl => new Location(jl.Key.location, new Section(jl.Key.section, jl.Value))).ToList();
+
             File.WriteAllText(filename, JsonConvert.SerializeObject(tracker, new JsonSerializerSettings { DateFormatString = "yyyy'-'MM'-'dd' 'HH':'mm':'ss" }));
         }
 
@@ -369,13 +391,14 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
         private class Location
         {
             public string location_reference = "";
+#pragma warning disable 0649 // Deserialization
             public bool modified_by_user;
+#pragma warning restore 0649
             public List<Section> sections = new();
 
-            public Location(string locationReference, bool modifiedByUser, params Section[] sections)
+            public Location(string locationReference, params Section[] sections)
             {
                 location_reference = locationReference ?? throw new ArgumentNullException(nameof(locationReference));
-                modified_by_user = modifiedByUser;
                 this.sections = new List<Section>(sections);
             }
         }

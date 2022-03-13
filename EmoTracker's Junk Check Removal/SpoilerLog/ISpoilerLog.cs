@@ -7,8 +7,8 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
     {
         bool IsThisSpoilerLog(string content);
         ISpoilerLog BuildSpoilerLog(string content);
-        Dictionary<Item, int> ItemsCount { get; }
-        void SaveTracker(string filename);
+        Dictionary<Item, List<string>> ItemsLocations { get; }
+        void SaveTracker(string filename, IEnumerable<Item> junkItems);
     }
 
     public class Item
