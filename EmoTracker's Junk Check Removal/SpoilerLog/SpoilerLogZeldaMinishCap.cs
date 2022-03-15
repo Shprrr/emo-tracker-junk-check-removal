@@ -191,9 +191,16 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
         {
             { "SmithHouse", ("129:Smith%27s%20House", "0:Intro%20Items") },
             { "IntroItem1", ("129:Smith%27s%20House", "0:Intro%20Items") },
-            { "IntroItem2", ("129:Smith%27s%20House", "0:Intro%20Items") }
+            { "IntroItem2", ("129:Smith%27s%20House", "0:Intro%20Items") },
+            { "LinkMinishWaterHoleHeartPiece", ("134:Minish%20Flippers%20Hole", "0:Minish%20Flippers%20Hole") },
+            { "HyruleWellTop", ("123:School", "1:Pull%20the%20Statue") },
+            { "HyruleWellLeft", ("120:Town%20Digging%20Cave", "1:Town%20Basement%20Left") },
+            { "HyruleWellBottom", ("122:Hyrule%20Well", "0:Hyrule%20Well%20Bottom%20Chest") },
+            { "HyruleWellPillar", ("122:Hyrule%20Well", "1:Hyrule%20Well%20Center%20Chest") },
+            { "HyruleWellRight", ("109:Mayor%27s%20House%20Basement", "0:Mayor%27s%20House%20Basement") }
         };
-        private static readonly Dictionary<(string location, string section), int> LocationWithSectionDatabase = LocationDatabase.GroupBy(l => l.Value, (k, l) => (k, count: l.Count())).ToDictionary(l => l.k, l => l.count);
+        private static readonly Dictionary<string, IEnumerable<KeyValuePair<string, int>>> SectionsByLocationDatabase = LocationDatabase.GroupBy(l => l.Value.location, l => l.Value.section)
+            .ToDictionary(l => l.Key, l => l.GroupBy(s => s, (s, chests) => new KeyValuePair<string, int>(s, chests.Count())));
 
         public bool IsThisSpoilerLog(string content) => content.StartsWith("Spoiler for Minish Cap Randomizer");
 
@@ -294,20 +301,19 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             //TODO: Read settings from spoiler.
             tracker.item_database.Add(new ProgressiveItem("95:progressive:Fusions", 1));
 
-            Dictionary<(string location, string section), int> junkLocations = new();
+            Dictionary<string, Dictionary<string, int>> junkLocations = new();
             foreach (var junkItem in junkItems)
             {
                 foreach (var location in ItemsLocations[junkItem])
                 {
                     if (!LocationDatabase.TryGetValue(location, out var locationWithSection)) continue; // Unknown location
 
-                    if (junkLocations.ContainsKey(locationWithSection))
-                        junkLocations[locationWithSection]--;
-                    else
-                        junkLocations.Add(locationWithSection, LocationWithSectionDatabase[locationWithSection] - 1);
+                    if (!junkLocations.ContainsKey(locationWithSection.location))
+                        junkLocations.Add(locationWithSection.location, new Dictionary<string, int>(SectionsByLocationDatabase[locationWithSection.location]));
+                    junkLocations[locationWithSection.location][locationWithSection.section]--;
                 }
             }
-            tracker.location_database.locations = junkLocations.Select(jl => new Location(jl.Key.location, new Section(jl.Key.section, jl.Value))).ToList();
+            tracker.location_database.locations = junkLocations.Select(jl => new Location(jl.Key, jl.Value.Select(jls => new Section(jls.Key, jls.Value)).ToArray())).ToList();
 
             File.WriteAllText(filename, JsonConvert.SerializeObject(tracker, new JsonSerializerSettings { DateFormatString = "yyyy'-'MM'-'dd' 'HH':'mm':'ss" }));
         }
