@@ -187,19 +187,38 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             { "FastSplit", new("FastSplit", "Faster Split Gauge", 86, ScrollsCategory) },
             { "LongSpin", new("LongSpin", "Longer Great Spin Attack", 87, ScrollsCategory) }
         };
-        private static readonly Dictionary<string, (string location, string section)> LocationDatabase = new()
+        private static readonly Dictionary<string, (string location, string section)[]> LocationDatabase = new()
         {
-            { "SmithHouse", ("129:Smith%27s%20House", "0:Intro%20Items") },
-            { "IntroItem1", ("129:Smith%27s%20House", "0:Intro%20Items") },
-            { "IntroItem2", ("129:Smith%27s%20House", "0:Intro%20Items") },
-            { "LinkMinishWaterHoleHeartPiece", ("134:Minish%20Flippers%20Hole", "0:Minish%20Flippers%20Hole") },
-            { "HyruleWellTop", ("123:School", "1:Pull%20the%20Statue") },
-            { "HyruleWellLeft", ("120:Town%20Digging%20Cave", "1:Town%20Basement%20Left") },
-            { "HyruleWellBottom", ("122:Hyrule%20Well", "0:Hyrule%20Well%20Bottom%20Chest") },
-            { "HyruleWellPillar", ("122:Hyrule%20Well", "1:Hyrule%20Well%20Center%20Chest") },
-            { "HyruleWellRight", ("109:Mayor%27s%20House%20Basement", "0:Mayor%27s%20House%20Basement") }
+            { "SmithHouse", new[] { ("129:Smith%27s%20House", "0:Intro%20Items") } },
+            { "IntroItem1", new[] { ("129:Smith%27s%20House", "0:Intro%20Items") } },
+            { "IntroItem2", new[] { ("129:Smith%27s%20House", "0:Intro%20Items") } },
+            { "LinkMinishWaterHoleHeartPiece", new[] { ("134:Minish%20Flippers%20Hole", "0:Minish%20Flippers%20Hole") } },
+            { "HyruleWellTop", new[] { ("123:School", "1:Pull%20the%20Statue") } },
+            { "HyruleWellLeft", new[] { ("120:Town%20Digging%20Cave", "1:Town%20Basement%20Left") } },
+            { "HyruleWellBottom", new[] { ("122:Hyrule%20Well", "0:Hyrule%20Well%20Bottom%20Chest") } },
+            { "HyruleWellPillar", new[] { ("122:Hyrule%20Well", "1:Hyrule%20Well%20Center%20Chest") } },
+            { "HyruleWellRight", new[] { ("109:Mayor%27s%20House%20Basement", "0:Mayor%27s%20House%20Basement") } },
+            { "PreCastleCaveHeartPiece", new[] { ("93:North%20Field%20Cave%20Heart%20Piece", "0:North%20Field%20Cave%20Heart%20Piece") } },
+            { "SwiftbladeScroll1", new[] { ("102:Swiftblade%27s%20Dojo", "0:Spin%20Attack") } },
+            { "SwiftbladeScroll2", new[] { ("102:Swiftblade%27s%20Dojo", "1:Rock%20Breaker") } },
+            { "SwiftbladeScroll3", new[] { ("102:Swiftblade%27s%20Dojo", "2:Dash%20Attack") } },
+            { "SwiftbladeScroll4", new[] { ("102:Swiftblade%27s%20Dojo", "3:Down%20Thrust") } },
+            { "GrimbladeHeartPiece", new[] { ("79:Grimblade", "1:Heart%20Piece") } },
+            { "GrimbladeScroll", new[] { ("79:Grimblade", "0:Grimblade") } },
+            { "CastleWaterLeft", new[] { ("80:Moat", "0:Moat") } },
+            { "CastleWaterRight", new[] { ("80:Moat", "0:Moat") } },
+            { "CafeLady", new[] { ("126:Lady%20Next%20to%20Cafe", "0:Lady%20Next%20to%20Cafe") } },
+            { "HearthLedge", new[] { ("127:Hearth%20Ledge", "0:Hearth%20Ledge") } },
+            { "HearthBackdoor", new[] { ("107:Hearth", "0:Hearth%20Back%20Door%20Heart%20Piece") } },
+            { "SchoolTop", new[] { ("123:School", "0:Roof%20Chest") } },
+            { "SchoolGardenLeft", new[] { ("124:School%20Gardens", "0:Garden%20Chests"), ("125:School%20Gardens%20Open", "0:Garden%20Chests") } },
+            { "SchoolGardenMiddle", new[] { ("124:School%20Gardens", "0:Garden%20Chests"), ("125:School%20Gardens%20Open", "0:Garden%20Chests") } },
+            { "SchoolGardenRight", new[] { ("124:School%20Gardens", "0:Garden%20Chests"), ("125:School%20Gardens%20Open", "0:Garden%20Chests") } },
+            { "SchoolGardenHeartPiece", new[] { ("124:School%20Gardens", "1:Heart%20Piece"), ("125:School%20Gardens%20Open", "1:Heart%20Piece") } }
         };
-        private static readonly Dictionary<string, IEnumerable<KeyValuePair<string, int>>> SectionsByLocationDatabase = LocationDatabase.GroupBy(l => l.Value.location, l => l.Value.section)
+        private static readonly Dictionary<string, IEnumerable<KeyValuePair<string, int>>> SectionsByLocationDatabase =
+            LocationDatabase.SelectMany(l => l.Value, (ls, l) => (locationSpoiler: ls.Key, l.location, l.section))
+            .GroupBy(l => l.location, l => l.section)
             .ToDictionary(l => l.Key, l => l.GroupBy(s => s, (s, chests) => new KeyValuePair<string, int>(s, chests.Count())));
 
         public bool IsThisSpoilerLog(string content) => content.StartsWith("Spoiler for Minish Cap Randomizer");
@@ -306,11 +325,14 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             {
                 foreach (var location in ItemsLocations[junkItem])
                 {
-                    if (!LocationDatabase.TryGetValue(location, out var locationWithSection)) continue; // Unknown location
+                    if (!LocationDatabase.TryGetValue(location, out var locationsWithSections)) continue; // Unknown location
 
-                    if (!junkLocations.ContainsKey(locationWithSection.location))
-                        junkLocations.Add(locationWithSection.location, new Dictionary<string, int>(SectionsByLocationDatabase[locationWithSection.location]));
-                    junkLocations[locationWithSection.location][locationWithSection.section]--;
+                    foreach (var locationWithSection in locationsWithSections)
+                    {
+                        if (!junkLocations.ContainsKey(locationWithSection.location))
+                            junkLocations.Add(locationWithSection.location, new Dictionary<string, int>(SectionsByLocationDatabase[locationWithSection.location]));
+                        junkLocations[locationWithSection.location][locationWithSection.section]--;
+                    }
                 }
             }
             tracker.location_database.locations = junkLocations.Select(jl => new Location(jl.Key, jl.Value.Select(jls => new Section(jls.Key, jls.Value)).ToArray())).ToList();
