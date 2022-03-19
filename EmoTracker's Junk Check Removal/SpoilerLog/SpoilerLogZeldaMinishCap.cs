@@ -364,6 +364,7 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             { "TowerTopLeft", new[] { ("157:Wind%20Tribe%20House", "2:House%20Chests"), ("112:Wind%20Tribe%20House%20Open", "1:Later%20House%20Chests") } },
             { "TowerTopRight", new[] { ("157:Wind%20Tribe%20House", "2:House%20Chests"), ("112:Wind%20Tribe%20House%20Open", "1:Later%20House%20Chests") } },
 
+            // Dungeons
             { "DeepwoodWiggler", new[] { ("226:DWS", "11:Madderpillar%20Chest"), ("257:Madderpillar%20Chest", "0:Madderpillar%20Chest") } },
             { "DeepwoodPostWigglerHeartPiece", new[] { ("226:DWS", "12:Madderpillar%20Heart%20Piece"), ("258:Madderpillar%20Heart%20Piece", "0:Madderpillar%20Heart%20Piece") } },
             { "DeepwoodPreWigglerLeft", new[] { ("226:DWS", "10:Puffstool%20Room"), ("256:Puffstool%20Room", "0:Puffstool%20Room") } },
@@ -469,7 +470,141 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
             { "CastleTopRightTower", new[] { ("240:DHC", "4:Northeast%20Tower"), ("241:DHC%20Open", "4:Northeast%20Tower"), ("242:DHC%20Ped", "7:Northeast%20Tower"), ("361:Northeast%20Tower", "0:Northeast%20Tower"), ("372:Northeast%20Tower%20Open", "0:Northeast%20Tower"), ("384:Northeast%20Tower%20Ped", "0:Northeast%20Tower") } },
             { "CastleLowerLeftTower", new[] { ("240:DHC", "6:Southwest%20Tower"), ("241:DHC%20Open", "6:Southwest%20Tower"), ("242:DHC%20Ped", "9:Southwest%20Tower"), ("359:Southwest%20Tower", "0:Southwest%20Tower"), ("370:Southwest%20Tower%20Open", "0:Southwest%20Tower"), ("382:Southwest%20Tower%20Ped", "0:Southwest%20Tower") } },
             { "CastleLowerRightTower", new[] { ("240:DHC", "5:Southeast%20Tower"), ("241:DHC%20Open", "5:Southeast%20Tower"), ("242:DHC%20Ped", "8:Southeast%20Tower"), ("360:Southeast%20Tower", "0:Southeast%20Tower"), ("371:Southeast%20Tower%20Open", "0:Southeast%20Tower"), ("383:Southeast%20Tower%20Ped", "0:Southeast%20Tower") } },
-            { "CastleBigBlock", new[] { ("240:DHC", "8:Big%20Block%20Chest"), ("241:DHC%20Open", "8:Big%20Block%20Chest"), ("242:DHC%20Ped", "11:Big%20Block%20Chest"), ("362:Big%20Block%20Chest", "0:Big%20Block%20Chest"), ("373:Big%20Block%20Chest%20Open", "0:Big%20Block%20Chest"), ("385:Big%20Block%20Chest%20Ped", "0:Big%20Block%20Chest") } }
+            { "CastleBigBlock", new[] { ("240:DHC", "8:Big%20Block%20Chest"), ("241:DHC%20Open", "8:Big%20Block%20Chest"), ("242:DHC%20Ped", "11:Big%20Block%20Chest"), ("362:Big%20Block%20Chest", "0:Big%20Block%20Chest"), ("373:Big%20Block%20Chest%20Open", "0:Big%20Block%20Chest"), ("385:Big%20Block%20Chest%20Ped", "0:Big%20Block%20Chest") } },
+
+            // Open fusion
+            { "MinishBottomLeftFusion", new[] { ("222:Post%20Minish%20Village%20Chest", "0:Wind%20Crest%20Chest") } }, // Not sure
+            { "MinishMiddleRightFusion", new[] { ("210:Minish%20Woods%20Pre%20Stump%20Chest", "0:Chest") } }, // Not sure
+            { "MinishMiddleFusion", new[] { ("215:Pre%20Shrine%20Chest", "0:Pre%20Shrine%20Chest") } }, // Not sure
+            { "MinishMiddleLeftFusion", new[] { ("212:Minish%20Woods%20Entrance%20Chest", "0:Chest") } }, // Not sure
+            { "MinishTopLeftFusion", new[] { ("211:Cross%20the%20Pond", "0:Chest") } },
+            { "MinishMinishPathFusion", new[] { ("219:Minish%20Village%20Open", "2:Minish%20Path%20Chest") } },
+            { "MinishCrackChest", new[] { ("213:Pre%20Minish%20Village%20Minish%20Hole", "0:Minish%20Hole") } },
+
+            { "HyliaMinishPathFusion", new[] { ("191:Lake%20Cabin%20Open", "1:Chest") } },
+
+            { "SchoolMinishPathFusion", new[] { ("125:School%20Gardens%20Open", "2:Minish%20Path%20Chest") } },
+            { "TownWaterfallChest", new[] { ("103:Town%20Waterfall", "0:Waterfall") } },
+            { "TingleTreeTopLeft", new[] { ("95:Top%20Left%20Tree", "0:Top%20Left%20Tree") } },
+            { "TingleTreeTopRight", new[] { ("96:Top%20Right%20Tree", "0:Top%20Right%20Tree") } },
+            { "TingleTreeBottomLeft", new[] { ("97:Bottom%20Left%20Tree", "0:Bottom%20Left%20Tree") } },
+            { "TingleTreeBottomRight", new[] { ("98:Bottom%20Right%20Tree", "0:Bottom%20Right%20Tree") } },
+            { "CastleGardenRightMinishHole", new[] { ("81:Gardens%20Right%20Fountain", "1:Minish%20Hole") } },
+            { "CastleGardenLeftMinishHole", new[] { ("82:Gardens%20Left%20Fountain", "0:Minish%20Hole") } },
+
+            { "LinkHouseFusion", new[] { ("131:Near%20Link%27s%20House%20Chest", "0:Chest") } },
+
+            { "LonLonFallsFusion", new[] { ("175:North%20Ranch%20Chest", "0:Chest") } },
+            { "LonLonMinishPathFusion", new[] { ("184:Bonk%20the%20Tree%20Open", "1:Minish%20Path%20Chest") } },
+            { "GoronSmallChest", new[] { ("181:Goron%20Quest", "0:Small%20Chest") } },
+
+            { "TrilbyTopFusion", new[] { ("73:Northern%20Chest", "0:Chest") } },
+            { "TrilbyMiddleFusion", new[] { ("72:Rocks%20Chest", "0:Rocks%20Chest") } },
+            { "TrilbyWaterCave", new[] { ("77:Trilby%20Highlands%20Fusion%20Cave", "0:Fusion%20Digging%20Cave") } },
+
+            { "WesternWoodChest", new[] { ("68:Western%20Wood%20Chest", "0:Freestanding%20Chest") } },
+
+            { "WesternWoodTopDig1", new[] { ("66:North%20Digging%20Spots", "0:Buried%20Treasure") } },
+            { "WesternWoodTopDig2", new[] { ("66:North%20Digging%20Spots", "0:Buried%20Treasure") } },
+            { "WesternWoodTopDig3", new[] { ("66:North%20Digging%20Spots", "0:Buried%20Treasure") } },
+            { "WesternWoodTopDig4", new[] { ("66:North%20Digging%20Spots", "0:Buried%20Treasure") } },
+            { "WesternWoodTopDig5", new[] { ("66:North%20Digging%20Spots", "0:Buried%20Treasure") } },
+            { "WesternWoodTopDig6", new[] { ("66:North%20Digging%20Spots", "0:Buried%20Treasure") } },
+            { "WesternWoodBottomDig1", new[] { ("67:South%20Digging%20Spots", "0:More%20Buried%20Treasure") } },
+            { "WesternWoodBottomDig2", new[] { ("67:South%20Digging%20Spots", "0:More%20Buried%20Treasure") } },
+
+            { "PercyHouseMoblin", new[] { ("69:Percy%27s%20House", "0:Moblin%20Reward") } },
+            { "PercyHouseReward", new[] { ("69:Percy%27s%20House", "1:Percy%20Reward") } },
+
+            { "HyliaWaterDigCave", new[] { ("189:Middle%20of%20the%20Lake", "0:Digging%20Cave") } },
+
+            { "CrenelGreenWaterFusion", new[] { ("28:Spring%20Water%20Path%20Chest", "0:Spring%20Water%20Path") } },
+            { "CrenelClimbFusion", new[] { ("8:Crenel%20Climbing%20Wall%20Chest", "0:Wall%20Chest") } },
+            { "CrenelRainPath", new[] { ("25:Rainy%20Minish%20Path%20Chest", "0:Rainy%20Chest") } },
+            { "CrenelLowerLeftFusion", new[] { ("31:Crenel%20Base%20Chest", "0:Crenel%20Base%20Chest") } },
+            { "PreMelariFusion", new[] { ("12:Melari%20Open", "1:Minish%20Path%20Chest"), ("14:Mines", "2:Minish%20Path%20Chest") } },
+
+            { "WildsTopRightCrack", new[] { ("51:Wilds%20Northern%20Minish%20Crack", "0:Minish%20Crack") } },
+            { "WildsTopLeftCrack", new[] { ("50:Mulldozers%20Open", "1:Left%20Crack") } },
+            { "WildsMiddleLeftCrack", new[] { ("60:Wilds%20Western%20Minish%20Crack", "0:Minish%20Crack") } },
+            { "WildsLongJourneyCrack", new[] { ("61:Wilds%20Vine%20Minish%20Crack", "0:Minish%20Crack") } },
+            { "WildsMinishWaterCaveChest", new[] { ("62:Wilds%20Water%20Minish%20Hole", "0:Hiking%20Trip") } },
+
+            { "RuinsPillarsFusion", new[] { ("46:4%20Pillars%20Chest", "0:4%20Pillars%20Chest") } },
+            { "RuinsCrackFusion", new[] { ("39:Minish%20Crack", "0:Chest") } },
+
+            { "PreValleyFusion", new[] { ("92:Pre%20Royal%20Valley%20Chest", "0:Chest") } },
+            { "RoyalValleyLeftFusion", new[] { ("89:Northwest%20Grave%20Area", "1:Nearby%20Chest") } },
+            { "RoyalValleyRightFusion", new[] { ("90:Northeast%20Grave%20Area", "1:Nearby%20Chest") } },
+            { "GinaGrave", new[] { ("90:Northeast%20Grave%20Area", "0:Northeast%20Grave") } },
+
+            { "FallsNearCrestFusion", new[] { ("166:Veil%20Falls%20Rock%20Chest", "0:Veil%20Falls%20Chest"), ("170:Upper%20Veil%20Falls%20Rocks", "1:Right%20Chest") } },
+            { "FallsWaterCaveEnd", new[] { ("159:Fusion%20Digging%20Cave", "1:Chest") } },
+
+            { "RuinsBombBag", new[] { ("44:Pre%20FOW%20Chest", "0:Pre%20FOW%20Chest") } },
+            { "LonLonWallet", new[] { ("182:Lon%20Lon%20Dried%20Up%20Pond", "0:Lon%20Lon%20Pond") } },
+            { "LonLonBottle3", new[] { ("203:Farm%20Chest", "0:Farm%20Chest") } },
+            { "GoronBottle4", new[] { ("181:Goron%20Quest", "1:Big%20Chest") } },
+            { "TingleBoomerang", new[] { ("99:4%20Trees%20Done", "0:Center%20Ladder") } },
+            { "RuinsBeanStalk", new[] { ("43:Wind%20Ruins%20Beanstalk", "0:Beanstalk") } },
+            { "BelariRemote", new[] { ("221:Belari%20Open", "1:Belari%202nd%20Item") } },
+
+            { "RuinsArrowButterfly", new[] { ("45:Wind%20Ruins%20Joy%20Butterfly", "0:Joy%20Butterfly") } },
+            { "WildsDigButterfly", new[] { ("48:Castor%20Wilds%20Joy%20Butterfly", "0:Joy%20Butterfly") } },
+            { "ValleySwimButterfly", new[] { ("91:Royal%20Valley%20Joy%20Butterfly", "0:Joy%20Butterfly") } },
+
+            { "CrenelBeanstalkHP", new[] { ("26:Mt.%20Crenel%20Beanstalk", "0:Beanstalk"), ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "0:Beanstalk") } },
+            { "HyliaBeanstalkHP", new[] { ("199:Treasure%20Cave", "2:Beanstalk%20Heart%20Piece") } },
+            { "HyliaBeanstalkLeft", new[] { ("199:Treasure%20Cave", "1:Beanstalk") } },
+            { "HyliaBeanstalkRight", new[] { ("199:Treasure%20Cave", "1:Beanstalk") } },
+
+            { "HillsBeanstalkHP", new[] { ("205:Eastern%20Hills%20Beanstalk", "1:Beanstalk%20Heart%20Piece") } },
+            { "HillsBeanstalkRight", new[] { ("205:Eastern%20Hills%20Beanstalk", "0:Beanstalk%20Chests") } },
+            { "HillsBeanstalkLeft", new[] { ("205:Eastern%20Hills%20Beanstalk", "0:Beanstalk%20Chests") } },
+
+            { "WesternBeanstalk", new[] { ("64:Western%20Woods%20Beanstalk", "0:Beanstalk"), ("65:Western%20Woods%20Beanstalk%20Rupee", "0:Beanstalk") } },
+
+            { "WesternTreeHouseHP", new[] { ("70:Western%20Woods%20Tree", "0:Heart%20Piece") } },
+            { "LinkHouseTreeHP", new[] { ("133:Tree%20Heart%20Piece", "0:Tree%20Heart%20Piece") } },
+            { "FallsWaterDigCaveHP", new[] { ("159:Fusion%20Digging%20Cave", "0:Heart%20Piece") } },
+            { "FallsWaterfallHP", new[] { ("158:Upper%20Veil%20Falls%20Heart%20Piece", "0:Upper%20Heart%20Piece") } },
+            { "WildsMinishWaterCaveHP", new[] { ("62:Wilds%20Water%20Minish%20Hole", "1:Hiking%20is%20Healthy") } },
+            { "CastleGardenDrainedFountainHP", new[] { ("81:Gardens%20Right%20Fountain", "0:Dry%20Fountain") } },
+            { "LibrariCabinContainer", new[] { ("188:Librari", "0:Librari") } },
+
+            { "ScarbladeScroll", new[] { ("59:Waterfall", "0:Scarblade") } },
+            { "SplitbladeScroll", new[] { ("177:Lower%20Veil%20Falls%20Waterfall", "0:Splitblade") } },
+            { "GreatbladeScroll", new[] { ("100:North%20Field%20Waterfall", "0:Greatblade") } },
+
+            // Obscure
+            { "HearthPot", new[] { ("107:Hearth", "1:Hearth%20Right%20Pot") } },
+            { "DropletsIceMazePot", new[] { ("236:TOD%20Obscure", "9:Right%20Path%20Ice%20Walkway%20Pot"), ("237:TOD%20RupObs", "13:Right%20Path%20Ice%20Walkway%20Pot"), ("319:Right%20Path%20Ice%20Walkway%20Pot", "0:Right%20Path%20Ice%20Walkway%20Pot") } },
+            { "FoWRightSideTopPot", new[] { ("231:FOW%20Obscure", "15:Right%20Side%20Moldorm%20Pots"), ("232:FOW%20RupObs", "17:Right%20Side%20Moldorm%20Pots"), ("300:Right%20Side%20Top%20Moldorm%20Pot", "0:Moldorm%20Pot") } },
+            { "FoWRightSideBottomPot", new[] { ("231:FOW%20Obscure", "15:Right%20Side%20Moldorm%20Pots"), ("232:FOW%20RupObs", "17:Right%20Side%20Moldorm%20Pots"), ("301:Right%20Side%20Left%20Moldorm%20Pot", "0:Moldorm%20Pot") } },
+
+            { "LonLonBuriedTreasure", new[] { ("185:Lon%20Lon%20Ranch%20Digging%20Spot", "0:Digging%20Spot%20Above%20Tree") } },
+            { "NorthHyruleFieldBuriedTreasure", new[] { ("94:North%20Field%20Digging%20Spot", "0:North%20Field%20Digging%20Spot") } },
+            { "TopLeftCloudWall", new[] { ("146:Top%20Left%20North%20Chests%20Obscure", "1:Digging%20Spot%20on%20the%20Left") } },
+            { "TopRightCloudWall", new[] { ("151:Top%20Right%20Digging%20Spot", "0:Digging%20Spot") } },
+            { "BottomMiddleCloudWall", new[] { ("153:Center%20Digging%20Spot", "0:Digging%20Spot") } },
+            { "BottomRightmostTopCloudWall", new[] { ("156:Southeast%20North%20Digging%20Spot", "0:Digging%20Spot") } },
+            { "BottomLeftCloudWall", new[] { ("152:Bottom%20Left%20Digging%20Spot", "0:Digging%20Spot") } },
+            { "BottomRightCloudWall", new[] { ("154:South%20Digging%20Spot", "0:Digging%20Spot") } },
+            { "BottomRightmostBottomCloudWall", new[] { ("155:Southeast%20South%20Digging%20Spot", "0:Digging%20Spot") } },
+            { "FallsBuriedTopTreasure", new[] { ("168:Veil%20Falls%20North%20Digging%20Spot", "0:North%20Digging%20Spot"), ("170:Upper%20Veil%20Falls%20Rocks", "0:Left%20Digging%20Spot") } },
+            { "FallsBuriedBottomTreasure", new[] { ("169:Veil%20Falls%20South%20Digging%20Spot", "0:South%20Digging%20Spot") } },
+            { "MelariMining1", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("22:Digging%20Spot%201", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining2", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("21:Digging%20Spot%202", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining3", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("20:Digging%20Spot%203", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining4", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("19:Digging%20Spot%204", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining5", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("18:Digging%20Spot%205", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining6", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("23:Digging%20Spot%206", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining7", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("17:Digging%20Spot%207", "0:Digging%20Spot") } }, // Not sure
+            { "MelariMining8", new[] { ("13:Mines%20Obs", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("14:Mines", "1:Digging%20Spots%20%28Melari%27s%20Mines%20Tab%29"), ("16:Digging%20Spot%208", "0:Digging%20Spot") } }, // Not sure
+
+            { "WildsSunkenKinstoneTop", new[] { ("63:Wilds%20Diving%20Spots", "0:Top") } },
+            { "WildsSunkenKinstoneMiddle", new[] { ("63:Wilds%20Diving%20Spots", "1:Middle") } },
+            { "WildsSunkenKinstoneBottom", new[] { ("63:Wilds%20Diving%20Spots", "2:Bottom") } }
         };
         private static readonly Dictionary<string, IEnumerable<KeyValuePair<string, int>>> SectionsByLocationDatabase =
             LocationDatabase.SelectMany(l => l.Value, (ls, l) => (locationSpoiler: ls.Key, l.location, l.section))
