@@ -189,6 +189,10 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
         };
         private static readonly Dictionary<string, (string location, string section)[]> LocationDatabase = new()
         {
+            { "PedItem1", new[] { ("242:DHC%20Ped", "0:Pedestal%20Two%20Elements"), ("376:Pedestal%20Items", "0:Two%20Elements") } },
+            { "PedItem2", new[] { ("242:DHC%20Ped", "1:Pedestal%20Three%20Elements"), ("376:Pedestal%20Items", "1:Three%20Elements") } },
+            { "PedItem3", new[] { ("242:DHC%20Ped", "2:Pedestal%20Four%20Elements"), ("376:Pedestal%20Items", "2:Four%20Elements") } },
+
             { "SmithHouse", new[] { ("129:Smith%27s%20House", "0:Intro%20Items") } },
             { "IntroItem1", new[] { ("129:Smith%27s%20House", "0:Intro%20Items") } },
             { "IntroItem2", new[] { ("129:Smith%27s%20House", "0:Intro%20Items") } },
@@ -604,7 +608,144 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
 
             { "WildsSunkenKinstoneTop", new[] { ("63:Wilds%20Diving%20Spots", "0:Top") } },
             { "WildsSunkenKinstoneMiddle", new[] { ("63:Wilds%20Diving%20Spots", "1:Middle") } },
-            { "WildsSunkenKinstoneBottom", new[] { ("63:Wilds%20Diving%20Spots", "2:Bottom") } }
+            { "WildsSunkenKinstoneBottom", new[] { ("63:Wilds%20Diving%20Spots", "2:Bottom") } },
+
+            // Rupeemania
+            { "CrenelFairyCaveRupee1", new[] { ("33:Fairy%20%2B%20Rupee%20Cave", "0:Rupees") } },
+            { "CrenelFairyCaveRupee2", new[] { ("33:Fairy%20%2B%20Rupee%20Cave", "0:Rupees") } },
+            { "CrenelFairyCaveRupee3", new[] { ("33:Fairy%20%2B%20Rupee%20Cave", "0:Rupees") } },
+            { "CrenelOutsideRupee", new[] { ("2:Vine%20Rupee", "0:Rupee") } },
+
+            { "FallsLowerRupee1", new[] { ("174:South%20Veil%20Falls%20Rupees", "0:Rupee%201") } }, // Not sure
+            { "FallsLowerRupee2", new[] { ("174:South%20Veil%20Falls%20Rupees", "1:Rupee%202") } }, // Not sure
+            { "FallsLowerRupee3", new[] { ("174:South%20Veil%20Falls%20Rupees", "2:Rupee%203") } }, // Not sure
+
+            { "FallsUpperCaveRupee1", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee2", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee3", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee4", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee5", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee6", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee7", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee8", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+            { "FallsUpperCaveRupee9", new[] { ("164:Veil%20Falls%20Upper%20Cave%20Rupees", "2:Downstairs%20Rupees"), ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "2:Downstairs%20Rupees") } },
+
+            { "FallsUpperCaveWaterRupee1", new[] { ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "3:Underwater%20Rupees") } },
+            { "FallsUpperCaveWaterRupee2", new[] { ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "3:Underwater%20Rupees") } },
+            { "FallsUpperCaveWaterRupee3", new[] { ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "3:Underwater%20Rupees") } },
+            { "FallsUpperCaveWaterRupee4", new[] { ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "3:Underwater%20Rupees") } },
+            { "FallsUpperCaveWaterRupee5", new[] { ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "3:Underwater%20Rupees") } },
+            { "FallsUpperCaveWaterRupee6", new[] { ("165:Veil%20Falls%20Upper%20Cave%20RupObs", "3:Underwater%20Rupees") } },
+
+            { "FortressBigRupee", new[] { ("230:FOW%20Rupees", "2:Entrance%20Big%20Rupee"), ("232:FOW%20RupObs", "2:Entrance%20Large%20Rupee"), ("280:Entrance%20Rupee", "0:Entrance%20Rupee") } },
+            { "FortressF1Rupee1", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("283:Left%20Side%20Left%20Rupees", "0:Left%20Side%20Left%20Rupees") } }, // Not sure
+            { "FortressF1Rupee2", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("283:Left%20Side%20Left%20Rupees", "0:Left%20Side%20Left%20Rupees") } }, // Not sure
+            { "FortressF1Rupee3", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("283:Left%20Side%20Left%20Rupees", "0:Left%20Side%20Left%20Rupees") } }, // Not sure
+            { "FortressF1Rupee4", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("283:Left%20Side%20Left%20Rupees", "0:Left%20Side%20Left%20Rupees") } }, // Not sure
+            { "FortressF1Rupee5", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("284:Left%20Side%20Right%20Rupees", "0:Left%20Side%20Right%20Rupees") } }, // Not sure
+            { "FortressF1Rupee6", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("284:Left%20Side%20Right%20Rupees", "0:Left%20Side%20Right%20Rupees") } }, // Not sure
+            { "FortressF1Rupee7", new[] { ("230:FOW%20Rupees", "4:Left%20Side%20Rupees"), ("232:FOW%20RupObs", "4:Left%20Side%20Rupees"), ("284:Left%20Side%20Right%20Rupees", "0:Left%20Side%20Right%20Rupees") } }, // Not sure
+
+            { "DropletsUpperWaterRupee1", new[] { ("237:TOD%20RupObs", "7:Upper%20Water%20Rupees"), ("312:Upper%20Underwater%20Rupees", "0:Upper%20Underwater%20Rupees") } },
+            { "DropletsUpperWaterRupee2", new[] { ("237:TOD%20RupObs", "7:Upper%20Water%20Rupees"), ("312:Upper%20Underwater%20Rupees", "0:Upper%20Underwater%20Rupees") } },
+            { "DropletsUpperWaterRupee3", new[] { ("237:TOD%20RupObs", "7:Upper%20Water%20Rupees"), ("312:Upper%20Underwater%20Rupees", "0:Upper%20Underwater%20Rupees") } },
+            { "DropletsUpperWaterRupee4", new[] { ("237:TOD%20RupObs", "7:Upper%20Water%20Rupees"), ("312:Upper%20Underwater%20Rupees", "0:Upper%20Underwater%20Rupees") } },
+            { "DropletsUpperWaterRupee5", new[] { ("237:TOD%20RupObs", "7:Upper%20Water%20Rupees"), ("312:Upper%20Underwater%20Rupees", "0:Upper%20Underwater%20Rupees") } },
+            { "DropletsUpperWaterRupee6", new[] { ("237:TOD%20RupObs", "7:Upper%20Water%20Rupees"), ("312:Upper%20Underwater%20Rupees", "0:Upper%20Underwater%20Rupees") } },
+            { "DropletsLowerWaterRupee1", new[] { ("237:TOD%20RupObs", "8:Lower%20Water%20Rupees"), ("313:Lower%20Underwater%20Rupees", "0:Lower%20Underwater%20Rupees") } },
+            { "DropletsLowerWaterRupee2", new[] { ("237:TOD%20RupObs", "8:Lower%20Water%20Rupees"), ("313:Lower%20Underwater%20Rupees", "0:Lower%20Underwater%20Rupees") } },
+            { "DropletsLowerWaterRupee3", new[] { ("237:TOD%20RupObs", "8:Lower%20Water%20Rupees"), ("313:Lower%20Underwater%20Rupees", "0:Lower%20Underwater%20Rupees") } },
+            { "DropletsLowerWaterRupee4", new[] { ("237:TOD%20RupObs", "8:Lower%20Water%20Rupees"), ("313:Lower%20Underwater%20Rupees", "0:Lower%20Underwater%20Rupees") } },
+            { "DropletsLowerWaterRupee5", new[] { ("237:TOD%20RupObs", "8:Lower%20Water%20Rupees"), ("313:Lower%20Underwater%20Rupees", "0:Lower%20Underwater%20Rupees") } },
+            { "DropletsLowerWaterRupee6", new[] { ("237:TOD%20RupObs", "8:Lower%20Water%20Rupees"), ("313:Lower%20Underwater%20Rupees", "0:Lower%20Underwater%20Rupees") } },
+
+            { "DropletsLeftPathRupee1", new[] { ("235:TOD%20Rupees", "5:Left%20Path%20Rupees"), ("237:TOD%20RupObs", "5:Left%20Path%20Rupees"), ("310:Left%20Path%20Rupees", "0:Left%20Path%20Rupees") } },
+            { "DropletsLeftPathRupee2", new[] { ("235:TOD%20Rupees", "5:Left%20Path%20Rupees"), ("237:TOD%20RupObs", "5:Left%20Path%20Rupees"), ("310:Left%20Path%20Rupees", "0:Left%20Path%20Rupees") } },
+            { "DropletsLeftPathRupee3", new[] { ("235:TOD%20Rupees", "5:Left%20Path%20Rupees"), ("237:TOD%20RupObs", "5:Left%20Path%20Rupees"), ("310:Left%20Path%20Rupees", "0:Left%20Path%20Rupees") } },
+            { "DropletsLeftPathRupee4", new[] { ("235:TOD%20Rupees", "5:Left%20Path%20Rupees"), ("237:TOD%20RupObs", "5:Left%20Path%20Rupees"), ("310:Left%20Path%20Rupees", "0:Left%20Path%20Rupees") } },
+            { "DropletsLeftPathRupee5", new[] { ("235:TOD%20Rupees", "5:Left%20Path%20Rupees"), ("237:TOD%20RupObs", "5:Left%20Path%20Rupees"), ("310:Left%20Path%20Rupees", "0:Left%20Path%20Rupees") } },
+            { "DropletsRightPathRupee1", new[] { ("235:TOD%20Rupees", "6:Right%20Path%20Rupees"), ("237:TOD%20RupObs", "6:Right%20Path%20Rupees"), ("311:Right%20Path%20Rupees", "0:Right%20Path%20Rupees") } },
+            { "DropletsRightPathRupee2", new[] { ("235:TOD%20Rupees", "6:Right%20Path%20Rupees"), ("237:TOD%20RupObs", "6:Right%20Path%20Rupees"), ("311:Right%20Path%20Rupees", "0:Right%20Path%20Rupees") } },
+            { "DropletsRightPathRupee3", new[] { ("235:TOD%20Rupees", "6:Right%20Path%20Rupees"), ("237:TOD%20RupObs", "6:Right%20Path%20Rupees"), ("311:Right%20Path%20Rupees", "0:Right%20Path%20Rupees") } },
+            { "DropletsRightPathRupee4", new[] { ("235:TOD%20Rupees", "6:Right%20Path%20Rupees"), ("237:TOD%20RupObs", "6:Right%20Path%20Rupees"), ("311:Right%20Path%20Rupees", "0:Right%20Path%20Rupees") } },
+            { "DropletsRightPathRupee5", new[] { ("235:TOD%20Rupees", "6:Right%20Path%20Rupees"), ("237:TOD%20RupObs", "6:Right%20Path%20Rupees"), ("311:Right%20Path%20Rupees", "0:Right%20Path%20Rupees") } },
+
+            { "CoFRupee1", new[] { ("228:COF%20Rupees", "1:Rupees"), ("263:Cave%20of%20Flames%20Rupees", "0:Rupees") } },
+            { "CoFRupee2", new[] { ("228:COF%20Rupees", "1:Rupees"), ("263:Cave%20of%20Flames%20Rupees", "0:Rupees") } },
+            { "CoFRupee3", new[] { ("228:COF%20Rupees", "1:Rupees"), ("263:Cave%20of%20Flames%20Rupees", "0:Rupees") } },
+            { "CoFRupee4", new[] { ("228:COF%20Rupees", "1:Rupees"), ("263:Cave%20of%20Flames%20Rupees", "0:Rupees") } },
+            { "CoFRupee5", new[] { ("228:COF%20Rupees", "1:Rupees"), ("263:Cave%20of%20Flames%20Rupees", "0:Rupees") } },
+
+            { "PalaceRupee1", new[] { ("239:POW%20Rupees", "3:Rupees"), ("337:Rupees", "0:Rupees") } },
+            { "PalaceRupee2", new[] { ("239:POW%20Rupees", "3:Rupees"), ("337:Rupees", "0:Rupees") } },
+            { "PalaceRupee3", new[] { ("239:POW%20Rupees", "3:Rupees"), ("337:Rupees", "0:Rupees") } },
+            { "PalaceRupee4", new[] { ("239:POW%20Rupees", "3:Rupees"), ("337:Rupees", "0:Rupees") } },
+            { "PalaceRupee5", new[] { ("239:POW%20Rupees", "3:Rupees"), ("337:Rupees", "0:Rupees") } },
+
+            { "FlipsCaveWaterfallRupee", new[] { ("116:Flippers%20Cave%20Rupees", "2:Under%20the%20Waterfall") } },
+
+            { "FarmCaveRupee", new[] { ("204:Farm%20Rupee", "0:Farm%20Rupee") } },
+
+            { "CrenelBeanstalkRupee1", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee2", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee3", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee4", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee5", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee6", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee7", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+            { "CrenelBeanstalkRupee8", new[] { ("27:Mt.%20Crenel%20Beanstalk%20Rupees", "1:Rupees") } },
+
+            { "WesternWoodBeanstalkRupee1", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee2", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee3", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee4", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee5", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee6", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee7", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee8", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee9", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee10", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee11", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee12", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee13", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee14", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee15", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+            { "WesternWoodBeanstalkRupee16", new[] { ("65:Western%20Woods%20Beanstalk%20Rupee", "1:Rupees") } },
+
+            { "LinkHousePuddleCaveRupee1", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee2", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee3", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee4", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee5", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee6", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee7", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee8", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee9", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee10", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee11", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee12", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee13", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee14", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+            { "LinkHousePuddleCaveRupee15", new[] { ("130:Fusion%20Rupee%20Cave", "0:Rupees") } },
+
+            { "TrilbyPuddleCaveRupee1", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee2", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee3", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee4", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee5", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee6", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee7", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee8", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee9", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee10", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee11", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee12", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee13", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee14", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+            { "TrilbyPuddleCaveRupee15", new[] { ("75:Trilby%20Highlands%20Rupee%20Cave", "0:Rupees") } },
+
+            // No location in spoiler but needed for tracker
+            { "", new[] { ("162:Source%20of%20the%20Flow%20Cave", "0:Fusion"), ("240:DHC", "9:Vaati"), ("241:DHC%20Open", "9:Vaati"), ("242:DHC%20Ped", "12:Vaati") } }
         };
         private static readonly Dictionary<string, IEnumerable<KeyValuePair<string, int>>> SectionsByLocationDatabase =
             LocationDatabase.SelectMany(l => l.Value, (ls, l) => (locationSpoiler: ls.Key, l.location, l.section))
@@ -725,7 +866,10 @@ namespace EmoTrackerJunkCheckRemoval.SpoilerLog
                     }
                 }
             }
-            tracker.location_database.locations = junkLocations.Select(jl => new Location(jl.Key, jl.Value.Select(jls => new Section(jls.Key, jls.Value)).ToArray())).ToList();
+            tracker.location_database.locations = junkLocations
+                .OrderBy(jl => int.Parse(jl.Key.Split(':')[0]))
+                .Select(jl => new Location(jl.Key, jl.Value.OrderBy(jls => int.Parse(jls.Key.Split(':')[0])).Select(jls => new Section(jls.Key, jls.Value)).ToArray()))
+                .ToList();
 
             File.WriteAllText(filename, JsonConvert.SerializeObject(tracker, new JsonSerializerSettings { DateFormatString = "yyyy'-'MM'-'dd' 'HH':'mm':'ss" }));
         }
